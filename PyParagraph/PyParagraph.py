@@ -2,25 +2,27 @@ import re
 import csv
 import os
 
+#Create file path to read in the text file
 filepath = os.path.join("raw_data/paragraph_1.txt")
 
 with open(filepath, 'r') as text:
     lines = text.read()
 
-mystring = lines
+#The file is called 'lines'
 
-word_count = mystring.split()
+#Split the text to equal word_count
+word_count = lines.split()
 
+#Split the text to equal sentence_count
 sentence_count = re.split(r'\.|\.\s|\.$', lines)
 
-words = mystring.split()
+#Find the average letter count
+average = sum(len(word) for word in word_count) / len(word_count)
 
-
-average = sum(len(word) for word in words) / len(words)
-
+#Find the average sentence length
 avg_len = sum(len(x.split()) for x in sentence_count) / len(sentence_count)
 
-
+#Print out answer
 print("Paragraph Analysis")
 print("---------------------")
 print ("Approximate Word Count: "  + str(len(word_count)))
